@@ -1,4 +1,4 @@
-function davies_standard(input,output)
+function [beats, x_mono]=modified_function(input,output)
 
 %function davies_standard(input,output)
 % 
@@ -26,7 +26,7 @@ function davies_standard(input,output)
 
 % convert to mono
 x = mean(x,2);
-
+x_mono = x;
 % if audio is not at 44khz resample
 if fs~=44100,
   x = resample(x,44100,fs);
