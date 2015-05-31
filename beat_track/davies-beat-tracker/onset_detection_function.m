@@ -1,4 +1,4 @@
-function df = onset_detection_function(x,p)
+function [df df_no_interpolation] = onset_detection_function(x,p)
 
 % function to calculate the following onset detection function
 % df = complex spectral difference
@@ -57,7 +57,7 @@ while pin<pend
     % move to next frame
     pin = pin+o_step;
 end
-
+df_no_interpolation = df;
 % now interpolate each detection function by a factor of 2 to get resolution of 11.6ms
 df = interp1([0:length(df)-1]*p.timeres/p.fs,df,[0:0.5:length(df)-1]*p.timeres/p.fs,'cubic');
 

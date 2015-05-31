@@ -1,4 +1,4 @@
-function [beats, x_mono]=modified_function(input,output)
+function [beats, x_mono, df, df2]=modified_function(input,output)
 
 %function davies_standard(input,output)
 % 
@@ -35,7 +35,7 @@ end
 p = bt_parms;
 
 % generate the onset detection function
-df = onset_detection_function(x,p);
+[df df2] = onset_detection_function(x,p);
 
 % strip any trailing zeros
 while (df(end)==0)
