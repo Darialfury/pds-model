@@ -23,14 +23,32 @@ id_pks_onset = (id_pks - 1)*513 + 1;
 tpkeas = t2(id_pks_onset);
 opeaks = onset_time(id_pks_onset);
 ids = find(opeaks>mean(opeaks));
+
+tb_peaks = tpkeas(ids);
+ob_peaks = opeaks(ids);
 plot(tpkeas(ids), opeaks(ids),'k*')
 %plot(t2(id_pks_onset), onset_time(id_pks_onset),'k*')
 title('Tempo and beat location')
 xlabel('Time')
 
+hold off
+[ida, ta_peaks] = filter_time_peaks(tb_peaks, 5);
+oa_peaks = ob_peaks(ida);
+
+
 figure
 plot(df)
 title('onset function')
+
+
+figure
+plot(vec_x, x_mono, 'r')
+hold on
+plot(t2,onset_time,'c')
+plot(ta_peaks, oa_peaks,'y*')
+%plot(t2(id_pks_onset), onset_time(id_pks_onset),'k*')
+title('Tempo and beat location')
+xlabel('Time')
 
 
 dv_beat = beats(2:end) - beats(1:end-1);
